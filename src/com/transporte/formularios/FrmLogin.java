@@ -143,6 +143,7 @@ public class FrmLogin extends javax.swing.JFrame {
         if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
             btnOk.requestFocus();
             btnOk.doClick();
+            
         }
     }//GEN-LAST:event_txtContraseñaKeyPressed
 
