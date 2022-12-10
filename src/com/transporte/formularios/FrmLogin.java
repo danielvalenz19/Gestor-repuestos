@@ -58,6 +58,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check.png"))); // NOI18N
         btnOk.setText("ok");
+        btnOk.setBorder(null);
         btnOk.setContentAreaFilled(false);
         btnOk.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnOk.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check animado.png"))); // NOI18N
@@ -87,12 +88,11 @@ public class FrmLogin extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addComponent(txtNombre)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(btnOk)))
                 .addContainerGap(93, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnOk)
-                .addGap(166, 166, 166))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(87, 87, 87)
@@ -112,7 +112,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnOk)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(74, 74, 74)
@@ -143,7 +143,7 @@ public class FrmLogin extends javax.swing.JFrame {
         if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
             btnOk.requestFocus();
             btnOk.doClick();
-            
+
         }
     }//GEN-LAST:event_txtContraseñaKeyPressed
 

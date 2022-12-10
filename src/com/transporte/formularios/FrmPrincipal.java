@@ -4,6 +4,13 @@
  */
 package com.transporte.formularios;
 
+import com.transporte.logica.ClsConexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author hetzo
@@ -15,7 +22,37 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     public FrmPrincipal() {
         initComponents();
+        mostrarDatos();
         this.setLocationRelativeTo(this);
+    }
+    ClsConexion con = new ClsConexion();
+    Connection cn = con.getConnection();
+
+    void mostrarDatos() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id");
+        modelo.addColumn("nombre");
+        modelo.addColumn("cantidad");
+        modelo.addColumn("descripcion");
+
+        TablaDatos.setModel(modelo);
+        String consultasql = "select*from repuestos";
+        String data[] = new String[4];
+        Statement st;
+
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(consultasql);
+            while (rs.next()) {
+                data[0] = rs.getString(1);
+                data[1] = rs.getString(2);
+                data[2] = rs.getString(3);
+                data[3] = rs.getString(4);
+                modelo.addRow(data);
+            }
+        } catch (SQLException e) {
+            System.out.println("error al mostrar los datos " + e);
+        }
     }
 
     /**
@@ -31,7 +68,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaDatos = new javax.swing.JTable();
         btnAgregarRepuestos = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         btnListaCamiones = new javax.swing.JButton();
@@ -64,40 +101,76 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(37, 37, 37))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Repuestos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 255, 204))); // NOI18N
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaDatos);
+        if (TablaDatos.getColumnModel().getColumnCount() > 0) {
+            TablaDatos.getColumnModel().getColumn(0).setResizable(false);
+            TablaDatos.getColumnModel().getColumn(0).setPreferredWidth(15);
+            TablaDatos.getColumnModel().getColumn(1).setResizable(false);
+            TablaDatos.getColumnModel().getColumn(2).setResizable(false);
+            TablaDatos.getColumnModel().getColumn(2).setPreferredWidth(15);
+            TablaDatos.getColumnModel().getColumn(3).setResizable(false);
+            TablaDatos.getColumnModel().getColumn(3).setPreferredWidth(500);
+        }
 
+        btnAgregarRepuestos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnAgregarRepuestos.setText("Agregar repuesto");
+        btnAgregarRepuestos.setBorder(null);
+        btnAgregarRepuestos.setBorderPainted(false);
+        btnAgregarRepuestos.setContentAreaFilled(false);
+        btnAgregarRepuestos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAgregarRepuestos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar animado.png"))); // NOI18N
+        btnAgregarRepuestos.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAgregarRepuestos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAgregarRepuestos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarRepuestosActionPerformed(evt);
             }
         });
 
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar sesión");
+        btnCerrarSesion.setBorder(null);
+        btnCerrarSesion.setBorderPainted(false);
+        btnCerrarSesion.setContentAreaFilled(false);
+        btnCerrarSesion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCerrarSesion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salir animado.png"))); // NOI18N
+        btnCerrarSesion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
 
+        btnListaCamiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/camion.png"))); // NOI18N
         btnListaCamiones.setText("Lista de camiones");
+        btnListaCamiones.setBorder(null);
+        btnListaCamiones.setBorderPainted(false);
+        btnListaCamiones.setContentAreaFilled(false);
+        btnListaCamiones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnListaCamiones.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/camion animado.png"))); // NOI18N
+        btnListaCamiones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnListaCamiones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaCamionesActionPerformed(evt);
             }
         });
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar usuario.png"))); // NOI18N
         jButton4.setText("Perfiles");
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar usuario animado.png"))); // NOI18N
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -117,37 +190,39 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnAgregarRepuestos)
-                                .addGap(30, 30, 30)
-                                .addComponent(btnListaCamiones)
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton4)
                                 .addGap(18, 18, 18)
+                                .addComponent(btnListaCamiones)
+                                .addGap(21, 21, 21)
+                                .addComponent(jButton4)
+                                .addGap(31, 31, 31)
                                 .addComponent(jToggleButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCerrarSesion))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnCerrarSesion)
+                                .addGap(15, 15, 15))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarRepuestos)
-                    .addComponent(btnCerrarSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnListaCamiones)
+                    .addComponent(btnAgregarRepuestos)
                     .addComponent(jButton4)
-                    .addComponent(jToggleButton1))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jToggleButton1)
+                        .addComponent(btnCerrarSesion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,7 +238,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -189,10 +264,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListaCamionesActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        FrmPerfiles frmPerfiles= new FrmPerfiles();
+        frmPerfiles.setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaDatos;
     private javax.swing.JButton btnAgregarRepuestos;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnListaCamiones;
@@ -202,7 +282,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
