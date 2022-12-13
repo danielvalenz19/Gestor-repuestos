@@ -4,8 +4,13 @@
  */
 package com.transporte.formularios;
 
+import com.transporte.logica.ClsConexion;
 import com.transporte.logica.ClsLogica;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +18,8 @@ import java.awt.event.KeyEvent;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
-    public String nombre;
+    ClsConexion con = new ClsConexion();
+    Connection cn = con.getConnection();
 
     /**
      * Creates new form ClsLogin
@@ -21,6 +27,30 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(this);
+    }
+
+    public void validarUsuario() {
+        int resultado = 0;
+        String contraseña = String.valueOf(txtContraseña.getPassword());
+        String nombre = txtNombre.getText();
+        String SQL = "SELECT * FROM acceso where nombre='" + nombre + "' and contraseña='" + contraseña + "'";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+
+            if (rs.next()) {
+                resultado = 1;
+                if (resultado == 1) {
+                    FrmPrincipal frmPrincipal = new FrmPrincipal();
+                    frmPrincipal.setVisible(true);
+                    this.dispose();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Error usuario no registrado");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"error"+ e.getMessage());
+        }
     }
 
     /**
@@ -130,7 +160,8 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        login();
+
+        validarUsuario();
 
     }//GEN-LAST:event_btnOkActionPerformed
 
