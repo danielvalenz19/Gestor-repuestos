@@ -78,7 +78,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel2.setText("contraseña:");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Nombre:");
+        jLabel3.setText("Usuario:");
 
         txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -127,7 +127,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(87, 87, 87)
                     .addComponent(jLabel3)
-                    .addContainerGap(236, Short.MAX_VALUE)))
+                    .addContainerGap(239, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

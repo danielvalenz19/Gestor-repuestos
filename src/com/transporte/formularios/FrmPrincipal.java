@@ -260,14 +260,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnListaCamionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaCamionesActionPerformed
-        // TODO add your handling code here:
+        FrmCamiones frmCamiones = new FrmCamiones();
+        frmCamiones.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnListaCamionesActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FrmPerfiles frmPerfiles= new FrmPerfiles();
-        frmPerfiles.setVisible(true);
-        this.dispose();
-
+    FrmAcceso frmAcceso = new FrmAcceso();
+    frmAcceso.setVisible(true);
+    this.dispose();
+ 
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
