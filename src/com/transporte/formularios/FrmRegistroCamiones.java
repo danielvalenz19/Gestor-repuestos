@@ -36,6 +36,7 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -52,6 +53,14 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+
+        jMenuItem1.setText("Eliminar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +118,7 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaDatos.setComponentPopupMenu(jPopupMenu1);
         TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaDatosMouseClicked(evt);
@@ -317,6 +327,26 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        if (JOptionPane.showConfirmDialog(null, "ESTAS SEGURO DE ELIMINAR ESTE REPUESTO? ", "SALIR", JOptionPane.YES_NO_CANCEL_OPTION) == 0) {
+            try {
+                PreparedStatement ps = cn.prepareStatement("DELETE FROM camiones where id='" + txtId.getText() + "'");
+                int indice = ps.executeUpdate();
+                if (indice > 0) {
+                    mostrarDatos();
+                    limpiar();
+                } else {
+                    System.out.println("NO ah seleccionado fila");
+                }
+            } catch (SQLException e) {
+                System.out.println("ERROR AL ELIMINAR DATOS " + e);
+            }
+        }
+
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public void limpiar() {
         txtId.setText("");
         txtMatricula.setText("");
@@ -390,8 +420,6 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDatos;
-    private javax.swing.JTable TablaDatos1;
-    private javax.swing.JTable TablaDatos2;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton1;
@@ -400,15 +428,12 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMatricula;
