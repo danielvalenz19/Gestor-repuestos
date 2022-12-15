@@ -97,8 +97,8 @@
                                   <Component id="btnListaCamiones" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnCerrarSesion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -110,7 +110,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -124,10 +124,8 @@
                       <Component id="btnListaCamiones" min="-2" max="-2" attributes="0"/>
                       <Component id="btnAgregarRepuestos" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCerrarSesion" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnCerrarSesion" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="341" max="-2" attributes="0"/>
@@ -275,10 +273,26 @@
             <Property name="text" type="java.lang.String" value="Usuario: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+        <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Movimiento"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/agregar usuario.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Movimientos"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/agregar usuario animado.png"/>
+            </Property>
+            <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -74,7 +74,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnListaCamiones = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,7 +179,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Usuario: ");
 
-        jToggleButton1.setText("Movimiento");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar usuario.png"))); // NOI18N
+        jButton5.setText("Movimientos");
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar usuario animado.png"))); // NOI18N
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,15 +209,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnListaCamiones)
                                 .addGap(21, 21, 21)
                                 .addComponent(jButton4)
-                                .addGap(31, 31, 31)
-                                .addComponent(jToggleButton1)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButton5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCerrarSesion)
                                 .addGap(15, 15, 15))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel2)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,9 +229,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     .addComponent(btnListaCamiones)
                     .addComponent(btnAgregarRepuestos)
                     .addComponent(jButton4)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jToggleButton1)
-                        .addComponent(btnCerrarSesion)))
+                    .addComponent(btnCerrarSesion)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(58, Short.MAX_VALUE))
@@ -273,17 +284,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        FrmMovimientosCmb frmMovimientos = new FrmMovimientosCmb();
+        frmMovimientos.setVisible(true);
+        this.dispose();
+                
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDatos;
     private javax.swing.JButton btnAgregarRepuestos;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnListaCamiones;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
