@@ -204,7 +204,7 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
                 .addGap(219, 219, 219))
         );
 
-        getContentPane().add(panelLienzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 350, 530));
+        getContentPane().add(panelLienzo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 350, 520));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 204, 204));
