@@ -23,7 +23,7 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
 
     ClsConexion con = new ClsConexion();
     Connection cn = con.getConnection();
-    
+
     public FrmMovimientosCmb() {
         initComponents();
         mostrarDatos();
@@ -41,6 +41,8 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         panelLienzo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
@@ -60,6 +62,14 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDatos = new javax.swing.JTable();
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setMaximumSize(new java.awt.Dimension(987, 637));
         setMinimumSize(new java.awt.Dimension(987, 637));
@@ -264,6 +274,12 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaDatos.setComponentPopupMenu(jPopupMenu1);
+        TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaDatos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -317,7 +333,7 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
                 modelo.addRow(data);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"error al mostrar los datos " + e);
+            JOptionPane.showMessageDialog(null, "error al mostrar los datos " + e);
         }
     }
 
@@ -329,10 +345,10 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
         txtMotivo.setText(null);
     }
 
-    
+
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            PreparedStatement ps = cn.prepareStatement("Update movimientos set repuesto_id='" + (String)cmbRepuesto.getSelectedItem() + "', camion_id='" + (String)cmbMatricula.getSelectedItem() + "',fecha='" + txtFecha.getText() + "', motivo='" + txtMotivo.getText() +  "' where id='" + txtId.getText() + "'");
+            PreparedStatement ps = cn.prepareStatement("Update movimientos set id='" + (String) cmbRepuesto.getSelectedItem() + "', camion_id='" + (String) cmbMatricula.getSelectedItem() + "',fecha='" + txtFecha.getText() + "', motivo='" + txtMotivo.getText() + "' where id='" + txtId.getText() + "'");
             int indice = ps.executeUpdate();
 
             if (indice > 0) {
@@ -342,8 +358,7 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "NO SE SELECCIONO FILA");
             }
-            } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR DATOS " + e);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -360,10 +375,10 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMotivoKeyPressed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-         try {
+        try {
             PreparedStatement ps = cn.prepareStatement("INSERT INTO movimientos (repuesto_id,camion_id,fecha,motivo) VALUES((SELECT id FROM repuestos where nombre=?),(SELECT id FROM camiones where matricula=?),?,?)");
-            ps.setString(1, (String)cmbRepuesto.getSelectedItem());
-            ps.setString(2, (String)cmbMatricula.getSelectedItem());
+            ps.setString(1, (String) cmbRepuesto.getSelectedItem());
+            ps.setString(2, (String) cmbMatricula.getSelectedItem());
             ps.setString(3, txtFecha.getText());
             ps.setString(4, txtMotivo.getText());
 
@@ -377,24 +392,21 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    public void rellenarComboBox(String nombreTabla, String valor, JComboBox combo)
-        {
-            String sql= "Select * from " + nombreTabla;
-            Statement st;
-            try
-            {
-             st = cn.createStatement();
-             ResultSet rs = st.executeQuery(sql);
-             while(rs.next())
-             {
-                 combo.addItem(rs.getString(valor));
-             }
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, "Error "+ e.toString());
+    public void rellenarComboBox(String nombreTabla, String valor, JComboBox combo) {
+        String sql = "Select * from " + nombreTabla;
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                combo.addItem(rs.getString(valor));
             }
-            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.toString());
         }
-    
+
+    }
+
     private void cmbRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRepuestoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRepuestoActionPerformed
@@ -404,6 +416,36 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
         frmPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        if (JOptionPane.showConfirmDialog(null, "ESTAS SEGURO DE ELIMINAR ESTE REGISTRO ", "SALIR", JOptionPane.YES_NO_CANCEL_OPTION) == 0) {
+            try {
+                PreparedStatement ps = cn.prepareStatement("DELETE FROM movimientos where id='" + txtId.getText() + "'");
+                int indice = ps.executeUpdate();
+                if (indice > 0) {
+                    mostrarDatos();
+                    limpiar();
+                } else {
+                    System.out.println("NO ah seleccionado fila");
+                }
+            } catch (SQLException e) {
+                System.out.println("ERROR AL ELIMINAR DATOS " + e);
+            }
+        }
+
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void TablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosMouseClicked
+        int fila = this.TablaDatos.getSelectedRow();
+        this.txtId.setText(this.TablaDatos.getValueAt(fila, 0).toString());
+        this.cmbRepuesto.setSelectedItem(this.TablaDatos.getValueAt(fila, 1).toString());
+        this.cmbMatricula.setSelectedItem(this.TablaDatos.getValueAt(fila, 2).toString());
+        this.txtFecha.setText(this.TablaDatos.getValueAt(fila, 3).toString());
+        this.txtMotivo.setText(this.TablaDatos.getValueAt(fila, 4).toString());
+
+    }//GEN-LAST:event_TablaDatosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,8 +461,10 @@ public class FrmMovimientosCmb extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelLienzo;
     private javax.swing.JTextField txtFecha;
