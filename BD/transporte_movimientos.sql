@@ -31,8 +31,8 @@ CREATE TABLE `movimientos` (
   PRIMARY KEY (`id`),
   KEY `fk_repuestos_has_movimientos_repuestos1` (`repuesto_id`),
   KEY `fk_camiones_has_movimientos_camiones1` (`camion_id`),
-  CONSTRAINT `fk_camiones_has_movimientos_camiones1` FOREIGN KEY (`camion_id`) REFERENCES `camiones` (`id`),
-  CONSTRAINT `fk_repuestos_has_movimientos_repuestos1` FOREIGN KEY (`repuesto_id`) REFERENCES `repuestos` (`id`)
+  CONSTRAINT `fk_camiones_has_movimientos_camiones1` FOREIGN KEY (`camion_id`) REFERENCES `camion` (`id`),
+  CONSTRAINT `fk_repuestos_has_movimientos_repuestos1` FOREIGN KEY (`repuesto_id`) REFERENCES `repuesto` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-15 11:17:14
+-- Dump completed on 2022-12-22 13:18:46

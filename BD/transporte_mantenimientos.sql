@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `transporte` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `transporte`;
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: transporte
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +29,7 @@ CREATE TABLE `mantenimientos` (
   `motivo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_mantenimientos_camiones_idx` (`camion_id`),
-  CONSTRAINT `fk_mantenimientos_camiones` FOREIGN KEY (`camion_id`) REFERENCES `camiones` (`id`)
+  CONSTRAINT `fk_mantenimientos_camiones` FOREIGN KEY (`camion_id`) REFERENCES `camion` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-13  6:58:45
+-- Dump completed on 2022-12-22 13:18:46

@@ -16,31 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `mantenimiento_repuesto`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `mantenimiento_repuesto`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `mantenimiento_repuesto` (
-  `repuesto_id` int NOT NULL,
-  `mantenimiento_id` int NOT NULL,
-  `cantidad` int NOT NULL,
-  PRIMARY KEY (`repuesto_id`,`mantenimiento_id`),
-  KEY `fk_repuestos_has_mantenimientos_mantenimientos1_idx` (`mantenimiento_id`),
-  KEY `fk_repuestos_has_mantenimientos_repuestos1_idx` (`repuesto_id`),
-  CONSTRAINT `fk_repuestos_has_mantenimientos_mantenimientos1` FOREIGN KEY (`mantenimiento_id`) REFERENCES `mantenimientos` (`id`),
-  CONSTRAINT `fk_repuestos_has_mantenimientos_repuestos1` FOREIGN KEY (`repuesto_id`) REFERENCES `repuesto` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `usuario` (
+  `idacceso` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `contraseña` varchar(45) NOT NULL,
+  PRIMARY KEY (`idacceso`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `mantenimiento_repuesto`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `mantenimiento_repuesto` WRITE;
-/*!40000 ALTER TABLE `mantenimiento_repuesto` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mantenimiento_repuesto` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (8,'admin','admin1');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
