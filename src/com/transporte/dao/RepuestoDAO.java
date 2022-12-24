@@ -1,6 +1,5 @@
 package com.transporte.dao;
 
-import com.transporte.dao.CRUD;
 import com.transporte.modelo.ClsConexion;
 import com.transporte.modelo.Repuesto;
 import java.sql.PreparedStatement;
@@ -19,6 +18,27 @@ public class RepuestoDAO implements CRUD {
     Statement st;
     ResultSet rs;
     private static RepuestoDAO repuestoDAO;
+    
+    public Repuesto listarId(int id){
+        Repuesto rep = new Repuesto();
+        String sql="SELECT * FROM repuesto where id=?";
+        try {
+            ps=ClsConexion.getClsConexion().getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                rep.setId(rs.getInt(1));
+                rep.setNombre(rs.getString(2));
+                rep.setCantidad(rs.getInt(3));
+                rep.setDescripcion(rs.getString(4));
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+        }
+        return rep;
+    }
+    
 
     private RepuestoDAO() {
     }

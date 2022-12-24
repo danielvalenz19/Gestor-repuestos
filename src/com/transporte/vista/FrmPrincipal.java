@@ -26,12 +26,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     void leer() {
         List<Repuesto> lista = RepuestoDAO.getRepuestoDAO().leer();
         modelo=(DefaultTableModel)TablaDatos.getModel();
-        Object[]ob= new Object[4];
+        Object[]ob= new Object[5];
         for(int i=0; i<lista.size(); i++){
             ob[0]=lista.get(i).getId();
-            ob[1]=lista.get(i).getNombre();
-            ob[2]=lista.get(i).getCantidad();
-            ob[3]=lista.get(i).getDescripcion();
+            ob[1]=lista.get(i).getCod();
+            ob[2]=lista.get(i).getNombre();
+            ob[3]=lista.get(i).getCantidad();
+            ob[4]=lista.get(i).getDescripcion();
             modelo.addRow(ob);
         }
         TablaDatos.setModel(modelo);
@@ -88,7 +89,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nombre", "Cantidad", "Descripción"
+                "Id", "Código", "Nombre", "Cantidad", "Descripción"
             }
         ));
         jScrollPane1.setViewportView(TablaDatos);
@@ -96,11 +97,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
             TablaDatos.getColumnModel().getColumn(0).setResizable(false);
             TablaDatos.getColumnModel().getColumn(0).setPreferredWidth(15);
             TablaDatos.getColumnModel().getColumn(1).setResizable(false);
-            TablaDatos.getColumnModel().getColumn(1).setPreferredWidth(200);
+            TablaDatos.getColumnModel().getColumn(1).setPreferredWidth(100);
             TablaDatos.getColumnModel().getColumn(2).setResizable(false);
-            TablaDatos.getColumnModel().getColumn(2).setPreferredWidth(50);
+            TablaDatos.getColumnModel().getColumn(2).setPreferredWidth(150);
             TablaDatos.getColumnModel().getColumn(3).setResizable(false);
-            TablaDatos.getColumnModel().getColumn(3).setPreferredWidth(300);
+            TablaDatos.getColumnModel().getColumn(3).setPreferredWidth(100);
+            TablaDatos.getColumnModel().getColumn(4).setPreferredWidth(300);
         }
 
         btnAgregarRepuestos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N

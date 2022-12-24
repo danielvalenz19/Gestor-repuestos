@@ -63,6 +63,12 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        jPopupMenu1.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                jPopupMenu1VetoableChange(evt);
+            }
+        });
+
         jMenuItem1.setText("Eliminar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,6 +353,10 @@ public class FrmRegistroCamiones extends javax.swing.JFrame {
         leer();
         limpiar();
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void jPopupMenu1VetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_jPopupMenu1VetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPopupMenu1VetoableChange
 
     void agregar() {
         String matricula = txtMatricula.getText();

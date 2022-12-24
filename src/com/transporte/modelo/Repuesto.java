@@ -8,11 +8,11 @@ package com.transporte.modelo;
 public class Repuesto {
     
     private int id;
+    private String cod;
     private String nombre;
     private int cantidad;
     private String descripcion;
     
-    private static Repuesto repuesto;
 
     public Repuesto() {
     }
@@ -20,8 +20,9 @@ public class Repuesto {
     
 
 
-    public Repuesto(int id, String nombre, int cantidad, String descripcion) {
+    public Repuesto(int id, String cod, String nombre, int cantidad, String descripcion) {
         this.id = id;
+        this.cod = cod;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
@@ -58,5 +59,15 @@ public class Repuesto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getCod() {
+        return cod;
+    }
+
+    public void setCod(String cod) {
+        this.cod = cod;
+    }
+    
+    
     
 }

@@ -19,6 +19,25 @@ public class CamionDAO implements CRUD{
     private ResultSet rs;
     
     private static CamionDAO camionDAO;
+    
+    public Camion listarId(int id){
+        Camion camion = new Camion();
+        String sql="SELECT * FROM camion where id=?";
+        try {
+            ps=ClsConexion.getClsConexion().getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                camion.setId(rs.getInt(1));
+                camion.setMatricula(rs.getString(2));
+                camion.setColor(rs.getString(3));
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error: "+e);
+        }
+        return camion;
+    }
 
     private CamionDAO() {
     }
